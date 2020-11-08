@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Platform</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/CoronaGamePotrait.json", {onProgress: UnityProgress});
+    </script>
+<style type="text/css">
+
+
+
+body {
+	
+	background-color: #336699;
+	
+	
+}
+
+#container:fullscreen {
+	
+	background-color: green;
+}
+
+#container:-webkit-full-screen {
+	
+	background-color: green;
+}
+
+
+
+button {
+	background-color: white;
+	border: 1px solid #336699;
+	color: #336699;
+	width: 300px;
+	padding: 10px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	font-weight: 700;
+	outline: none;
+}
+
+#unlock-button {
+	display: none;
+}
+
+</style>
+  </head>
+  <body>
+<div>
+	<p id="orientation-status"></p>
+	<div id="buttons-container">
+		
+	</div>
+<script>
+var _LOCK_BUTTON = document.querySelector("#lock-landscape-button"),
+	_UNLOCK_BUTTON = document.querySelector("#unlock-button"),
+	_STATUS = document.querySelector("#orientation-status");
+try {
+// when screen orientation changes
+screen.orientation.addEventListener("change", function() {
+_STATUS.innerHTML = screen.orientation.type + ' mode';
+if(_STATUS.innerHTML=='landscape-primary mode')
+{
+// if the ok button is clicked, result will be true (boolean)
+var result = confirm( "Please Turn off the Auto-Rotation");
+if (result) {
+    // the user clicked ok
+setTimeout(function() {myCheckFunction(); }, 8000);
+} else {
+    // the user clicked cancel or closed the confirm dialog.
+myCheckFunction();
+}
+}
+});
+}
+catch(err) {
+  
+}
+function myCheckFunction() {
+if(_STATUS.innerHTML=='landscape-primary mode')
+{
+var result = confirm( "Please Turn off the Auto-Rotation to play the game");
+if (result) 
+{
+    // the user clicked ok
+setTimeout(function() {myCheckFunction(); }, 8000);
+} 
+else 
+{
+// the user clicked cancel or closed the confirm dialog.
+myCheckFunction();
+}	
+}
+else
+{
+}
+}
+</script>
+    <div class="webgl-content">
+      <div id="unityContainer" style="width: 480px; height: 800px"></div>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+        <div class="title">Platform</div>
+      </div>
+    </div>
+  </body>
+</html>
